@@ -41,7 +41,7 @@ class App(ctk.CTk):
         super().__init__()
         self.title("ESP32 Screen Layout Helper")
         self.geometry("650x700")
-        self.resizable(False, False)
+        #self.resizable(False, False)
         ctk.set_appearance_mode("System")
         ctk.set_default_color_theme("blue")
         self.elements = {}
