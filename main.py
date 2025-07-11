@@ -587,7 +587,7 @@ class App(ctk.CTk):
                 with open(output_filepath, 'wb') as f:
                     for pixel in rgb565_array:
                         # Empacota cada pixel como um 'unsigned short' big-endian.
-                        f.write(struct.pack('>H', pixel))
+                        f.write(struct.pack('<H', pixel))
             except IOError as e:
                 messagebox.showerror(self.get_string("title_error"), self.get_string("error_file_save").format(filepath=output_filepath, e=e))
                 return
