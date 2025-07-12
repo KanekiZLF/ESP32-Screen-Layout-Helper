@@ -634,7 +634,13 @@ class App(ctk.CTk):
             original_text = copy_button.cget("text")
             original_color = copy_button.cget("fg_color")
             copy_button.configure(text=self.get_string("copied_text"), fg_color="green", hover=False)
-            self.after(2000, lambda: copy_button.configure(text=original_text, fg_color=original_color, hover=True))
+            def reset_button_state():
+                # Verifica se a janela e o botão ainda existem
+                if code_window.winfo_exists() and copy_button.winfo_exists():
+                    copy_button.configure(text=original_text, fg_color=original_color, hover=True)
+
+            # Agenda a verificação e restauração
+            self.after(2000, reset_button_state)
             
         copy_button = ctk.CTkButton(main_frame, text=self.get_string("copy_button_text"), command=copy_to_clipboard)
         copy_button.grid(row=1, column=0, pady=(10,0), sticky="ew")
